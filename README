@@ -1,0 +1,202 @@
+<h1>ScrollectBox</h1>
+
+<strong>ScrollectBox</strong> lets you design scrollable select- and drop-down-lists freely.
+
+When used on a <code>select</code>-element, the ScrollectBox will act as a stylable clone, thus preserving the functionality of e.g. a form. Further down this page, in the <a href="http://www.afekenholm.se/scrollectbox-jquery-plugin#Examples">Examples</a> section, is a tryout form as well as a visualization of the connection between the <code>select</code>-element and the ScrollectBox.
+
+When used for drop-down-menues, all that is needed is a bunch of links inside an element with a <code>title</code> attribute.
+
+<h3>ScrollectBox in comparison to other similar plugins</h3>
+
+ScrollectBox has a number of unique (as far as I know) features:
+
+<p class="indent-6">&middot; Applicable to <strong>both drop-downs and <code>&lt;select&gt;</code>s</strong>.
+&middot; No ugly scrollbar.
+&middot; Four creative ways to scroll.</p>
+
+<h2 id="Examples">Examples</h2>
+<h3>A basic scrollable drop-down menu (scroll by clicking)</h3>
+This is probably how most people would expect a scrollable drop-down menu to work. (Note that I have set <code>float</code> to left for <code>ul.demo-dropdown-1</code> to let it attain its width. To achieve this affect without <code>float</code>ing you can use the <code>listWidth</code> property, see <a href="#Usage">Usage</a>.)
+<div class="demo-dropdown-1" title="Navigate this page"><a href="#top">Page top</a><a href="#page-heading">ScrollectBox heading</a><a href="#Downloads">Downloads</a><a href="#Examples">Examples</a><a href="#Usage">Usage</a><a href="#Releases">Releases</a><a href="#Feedback">Feedback & Development</a><a href="#comments">Comments</a><a href="#pings">Trackbacks</a><a href="#respond">Leave a reply</a></div>
+<div class="clear"></div>
+
+<pre>$("ul-dropdown-1").scrollectBox();</pre>
+
+<h3>Customized drop-down menu (show/hide on click/blur, scroll when scroll buttons are being hovered), including custom event handler</h3>
+<div class="demo-dropdown-2" title="Navigate this page"><a href="#top">Page top</a><a href="#page-heading">ScrollectBox heading</a><a href="#Downloads">Downloads</a><a href="#Examples">Examples</a><a href="#Usage">Usage</a><a href="#Releases">Releases</a><a href="#Feedback">Feedback & Development</a><a href="#comments">Comments</a><a href="#pings">Trackbacks</a><a href="#respond">Leave a reply</a></div>
+<div class="clear"></div>
+<pre>// Custom selection event handler
+var selectEvent = function($el){
+	alert("You chose " + $el.html());
+	return false; // Do not follow the link
+};
+
+$(".demo-dropdown-2").scrollectBox({
+	preset: "dropdown",
+	numVisibleOptions: 4,
+	scrollOn: "hover",
+	scrollInterval: 100,
+	onSelectEvent: selectEvent,
+	hideOnSelect: false,
+	listWidth: 200
+});</pre>
+
+<h3>A scrollable, stylable <code>&lt;select&gt;</code> element (scroll using mouse wheel)</h3>
+<p>Here is an example of how ScrollectBox creates a scrollable, stylable port to a <code>&lt;select&gt;</code> tag. When the <code>debug</code> property is set to <code>true</code>, you can watch how the chosen option in the ScrollectBox will be sent to the corresponding <code>&lt;select&gt;</code> element.</p>
+<p>Cheers to <a href="http://brandonaaron.net/">Brandon Aaron</a> for his <a href="http://brandonaaron.net/code/mousewheel/demos">jQuery Mousewheel Plugin</a>! Mighty useful.</p>
+<select class="demo-select-1" name="some_option">
+<option>Choose an option</option>
+<option value="1">Option 1</option>
+<option value="2">Option 2</option>
+<option value="3">Option 3</option>
+<option value="4">Option 4</option>
+<option value="5">Option 5</option>
+<option value="6">Option 6</option>
+<option value="7">Option 7</option>
+<option value="8">Option 8</option>
+<option value="9">Option 9</option>
+<option value="10">Option 10</option>
+<option value="11">Option 11</option>
+</select>
+<div class="clear"></div>
+<pre>$(".demo-select-1").scrollectBox({
+	preset: "select",
+	numVisibleOptions: 8,
+	scrollOn: "scroll",
+	debug: true
+});</pre>
+
+<h3>A complete form with all <code>&lt;select&gt;</code>s ported to ScrollectBoxes</h3>
+
+This is a form containing two <code>&lt;select&gt;</code>s which are scrolled through using the value <code>"hoveroutside"</code> value for the <code>scrollOn</code> option. This imitates the behaviour of a well-populated <code>&lt;select&gt;</code> element displayed on a Mac; when the mouse pointer is inside the horizontal bound, scrolling can be achieved by moving it above/below the up/down scrolling button.
+
+<p>Try selecting some options and submit the form!</p>
+<form action="http://www.afekenholm.se/scrollectbox-jquery-plugin#Examples" method="GET" id="demo-form"><p><label for="sel1">Select 1</label>
+<select name="sel1">
+<option>Choose an option</option>
+<optgroup label="Category 1"><option value="1-1">Cat 1 Opt 1</option><option value="1-2">Cat 1 Opt 2</option><option value="1-3">Cat 1 Opt 3</option><option value="1-4">Cat 1 Opt 4</option></optgroup><optgroup label="Category 2"><option value="2-1">Cat 2 Opt 1</option><option value="2-2">Cat 2 Opt 2</option><option value="2-3">Cat 2 Opt 3</option></optgroup><optgroup label="Category 3"><option value="3-1">Cat 3 Opt 1</option><option value="3-2">Cat 3 Opt 2</option><option value="3-3">Cat 3 Opt 3</option><option value="3-4">Cat 3 Opt 4</option><option value="3-5">Cat 3 Opt 5</option></optgroup></select></p>
+<div class="clear"></div>
+<p><label for="sel2">Select 2</label>
+<select name="sel2"><option>Choose another option</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option><option value="4">Option 4</option><option value="5">Option 5</option><option value="6">Option 6</option><option value="7">Option 7</option><option value="8">Option 8</option><option value="9">Option 9</option><option value="10">Option 10</option><option value="11">Option 11</option><option value="12">Option 12</option></select></p>
+
+<p class="clear" style="float:left;"><input type="submit" value="Submit" class="submit-btn" /></p>
+<div class="clear"></div>
+</form>
+<pre>$("form#demo-form select").scrollectBox({
+	preset: "select",
+	numVisibleOptions: 5,
+	scrollOn: "hoveroutside",
+	scrollInterval: 150,
+	listWidth: 250
+});</pre>
+
+<h2 id="Usage">Usage</h2>
+<h3>Setting up the HTML</h3>
+There are two purposes with the ScrollectBox plugin:
+&nbsp;&nbsp;&nbsp;1) Create drop-down menues easily.
+&nbsp;&nbsp;&nbsp;2) Create a stylable sibling to a <code>&lt;select&gt;</code> element.
+
+A drop-down menu will need the following markup:
+<pre>&lt;div id="some_class" title="Navigate this page"&gt;
+	&lt;a href="#top"&gt;Page top&lt;/a&gt;
+	&lt;a href="#page-heading"&gt;ScrollectBox heading&lt;/a&gt;
+	&lt;a href="#Downloads"&gt;Downloads&lt;/a&gt;
+	&lt;a href="#Examples"&gt;Examples&lt;/a&gt;
+	&lt;a href="#Usage"&gt;Usage&lt;/a&gt;
+	&lt;a href="#Releases"&gt;Releases&lt;/a&gt;
+	&lt;a href="#Feedback"&gt;Feedback & Development&lt;/a&gt;
+	&lt;a href="#comments"&gt;Comments&lt;/a&gt;
+	&lt;a href="#pings"&gt;Trackbacks&lt;/a&gt;
+	&lt;a href="#respond"&gt;Leave a reply&lt;/a&gt;
+&lt;/div&gt;</pre>
+
+A <code>&lt;select&gt;</code> element really just needs to be just that. For example:
+<pre>&lt;select name="some_name"&gt;
+	&lt;option&gt;Choose another option&lt;/option&gt;
+	&lt;option value="1"&gt;Option 1&lt;/option&gt;
+	&lt;optgroup label="Some group"&gt;
+		&lt;option value="2"&gt;Option 2&lt;/option&gt;
+		&lt;option value="3"&gt;Option 3&lt;/option&gt;
+	&lt;/optgroup&gt;
+	...
+	&lt;option value="8"&gt;Option 8&lt;/option&gt;
+	&lt;option value="9"&gt;Option 9&lt;/option&gt;
+&lt;/select&gt;</pre>
+
+<h3>Calling the plugin</h3>
+
+With all default options sent along, the call to the plugin will look like this:
+
+<pre>// Default options
+$.scrollectBox.defaults = {
+	preset: null, // 'dropdown', 'select'
+	numVisibleOptions: 8,
+	showOn: "mouseover", // "click" 
+	hideOn: "mouseout", // "blur"
+	scrollOn: "click", // "hover", "hoveroutside", "scroll"
+	scrollInterval: 250,
+	followLink: true,
+	hideOnSelect: true,
+	onSelectEvent: null, // custom onselect event handler
+	onSelectFunc: null, // custom extra function on select
+	showCurrentOptionsAsHeadline: true,
+	listWidth: null,
+	debug: false 
+};</pre>
+
+<h2>Documentation</h2>
+<h4><code class="docs-param">preset</code></h4>
+A string that allows you to use a preset regarding the showing and hiding of the list. Default is set to <code>null</code>.
+<p class="indent-3"><code>"dropdown"</code> <em>(show/hide on hover)</em>
+<code>"select"</code> <em>(show on click, hide on blur)</em></p>
+
+<h4><code class="docs-param">numVisibleOptions</code></h4>
+How many options (including <code>&lt;optgroup&gt;</code>s) that should be visible at the same time. Default is set to <code>8</code>.
+
+<h4><code class="docs-param">showOn</code></h4>
+The name of the event that will show the list. If <code>preset</code> is set, this value will be overridden.
+<p class="indent-3"><code>"mouseover"</code> <em>(Default)</em>
+<code>"click"</code></p>
+
+<h4><code class="docs-param">hideOn</code></h4>
+The name of the event that will hide the list. If <code>preset</code> is set, this value will be overridden.
+<p class="indent-3"><code>"mouseout"</code> <em>(Default)</em>
+<code>"blur"</code></p>
+
+<h4><code class="docs-param">scrollOn</code></h4>
+The name of the event that will trigger a scroll in the list.
+<p class="indent-3"><code>"click"</code> <em>When a scroll button is clicked. (Default)</em>
+<code>"hover"</code> <em>When a scroll button is hovered.</em>
+<code>"hoveroutside"</code> <em>When a scroll button, or an area above/below is hovered.</em>
+<code>"scroll"</code> <em>When the user scrolls (using the mouse wheel) inside the list.</em></p>
+
+<h4><code class="docs-param">scrollInterval</code></h4>
+The time in milliseconds between each scroll (used when <code>scrollOn</code> is set to <code>"hover"</code> or <code>"hoveroutside"</code>). The default is <code>250</code>.
+
+<h4><code class="docs-param">followLink</code></h4>
+Whether or not to follow the option's link (used on drop-down menues).
+<p class="indent-3"><code>true</code>  <em>(Default)</em>
+<code>false</code></p>
+
+<h4><code class="docs-param">hideOnSelect</code></h4>
+Whether or not to hide the list once an option has been chosen.
+<p class="indent-3"><code>true</code>  <em>(Default)</em>
+<code>false</code></p>
+
+<h4><code class="docs-param">onSelectEvent</code></h4>
+A custom event handler for handling option selection. The function may take two parameters; the object (the link inside the option) clicked and the click-event, e.g.: <code>var customSelectHandler = function($obj, event){...};</code>. The default is <code>null</code>.
+
+<h4><code class="docs-param">onSelectFunc</code></h4>
+A function that will be called from within the default handler (at the beginning). The function may take two parameters; the object (the link inside the option) clicked and the click-event, e.g.: <code>var extraFunc = function($obj, event){...};</code>. The default is <code>null</code>.
+
+<h4><code class="docs-param">showCurrentOptionAsHeadline</code></h4>
+Whether or not to display the selected option in the headline. The default is <code>true</code>.
+
+<h4<code class="docs-param">listWidth</code></h4>
+A CSS-compatible number or string that gives the ScrollectBox a fixed width. The default is <code>null</code>.
+
+<h4<code class="docs-param">debug</code></h4>
+Whether or not to show the corresponding <code>&lt;select&gt;</code> element in debugging purposes. The element will be semi-transparent. The default is <code>false</code>.
+
+<h2 id="Feedback">Feedback & development</h2>
+This plugin is developed by <a href="http://www.afekenholm.se/about">Alexander Wallin at afEkenholm Web Design</a>. For further development, suggestions and/or nasty complaints, please post a comment below or write to <a href="mailto:contact@afekenholm.se">contact@afekenholm.se</a>.
