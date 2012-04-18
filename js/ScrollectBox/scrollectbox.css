@@ -1,0 +1,42 @@
+/* You'll probably want this */
+.scrollectbox							{ overflow:visible; position:relative; }
+.scrollectbox li > a					{ display:block; }
+
+/* If one wants rounded corners, the top-li may be combined with a negative margin-top
+to reach halfway up the headline. The bottom-li may just be a decorative bottom strip. */
+.scrollectbox-top-li					{ /*display:none;*/ height:10px; margin-top:-10px; padding:0; }
+.scrollectbox-bottom-li					{ /*display:none;*/ height:5px; padding:0; }
+
+/* Style the selectbox, the headline and the arrow */
+.scrollectbox							{ float:left; margin:10px 0; }
+.scrollectbox-arrow						{ /*display:none;*/ float:right; width:15px; height:13px; padding:0;
+	 									background:url('images/scrollectbox-arrows.png') no-repeat left 8px;
+	 									z-index:2; }
+.scrollectbox-headline					{ padding:4px 8px; background:#fff; color:#555; 
+										border:1px solid #999; border-bottom-width:0;
+	 									-webkit-border-radius:10px; -moz-border-radius:10px; 
+										border-radius:10px; }
+
+/* Style list and options */
+.scrollectbox-list 						{ background-color:#fff; border:1px solid #999; border-top-width:0; }
+.scrollectbox li > a					{ padding:4px 8px; color:#333; }
+.scrollectbox li > a:hover				{ background-color:#ccc; }
+
+/* Selected option, optgroup and option indents */
+.scrollectbox li.scrollectbox-option-selected > a 	{ color:#fff; background:#5454F0; }
+.scrollectbox li.scrollectbox-optgroup				{ color:#999; font-weight:bold; font-size:11px; height:11px; 
+													padding:5px 8px 4px; }
+.scrollectbox li.scrollectbox-optgroup-option > a	{ padding-left:16px; }
+
+/* Scroll buttons */
+.scrollectbox-scroll-btn						{ background:#fff url('images/scrollectbox-arrows.png') no-repeat center 4px;
+ 												height:15px; }
+.scrollectbox-scroll-btn:hover					{ background-color:#eee; }
+.scrollectbox-scroll-prev						{ background-position:center -14px; }
+.scrollectbox-scroll-disabled					{ opacity:0.5; }
+
+
+/* Choose cursor type */
+.scrollectbox-headline, 
+.scorllectbox-arrow						{ cursor:pointer; }				/* Looks proper, i.m.o. */
+.scrollectbox-select *					{ cursor:default !important; } 	/* Default style for <select> */
